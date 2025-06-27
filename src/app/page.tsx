@@ -208,7 +208,7 @@ export default function HomePage() {
           </div>
           <div>
             <Image
-              src="https://placehold.co/550x400.png"
+              src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1751025615/550x400-01_zipxu5.jpg"
               alt="Teacher guiding young students"
               width={550}
               height={400}
