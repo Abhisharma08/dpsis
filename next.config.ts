@@ -28,6 +28,24 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.lugc.link',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '8b628c1d24.imgdist.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd15k2d11r6t6rl.cloudfront.net',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
