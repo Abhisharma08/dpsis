@@ -19,7 +19,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { submitInquiry, type InquiryFormInput } from "@/ai/flows/submit-inquiry-flow";
+import { submitEnquiry, type EnquiryFormInput } from "@/ai/flows/submit-inquiry-flow";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   parentName: z.string().min(2, { message: "Parent's name must be at least 2 characters." }).max(100),
@@ -38,6 +39,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ onSuccess, isPopup = false, className }: ContactFormProps) {
+  const router = useRouter();
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,34 +51,29 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
     },
   });
 
-  const [submissionStatus, setSubmissionStatus] = useState<null | 'success' | 'error'>(null);
-  const [submissionMessage, setSubmissionMessage] = useState<string>("");
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
 
-  async function onSubmit(data: InquiryFormInput) {
-    setSubmissionStatus(null);
-    setSubmissionMessage("");
+  async function onSubmit(data: EnquiryFormInput) {
+    setSubmissionError(null);
     try {
-      const result = await submitInquiry(data);
+      const result = await submitEnquiry(data);
       if (result.success) {
-        setSubmissionStatus('success');
-        setSubmissionMessage(result.message || "Your inquiry has been submitted successfully!");
-        form.reset();
         if (onSuccess) {
           onSuccess();
         }
+        router.push('/thank-you');
       } else {
-        setSubmissionStatus('error');
-        setSubmissionMessage(result.message || "Submission failed. Please try again.");
+        const message = result.message || "Submission failed. Please try again.";
+        setSubmissionError(message);
         toast({
           title: "Submission Failed",
-          description: result.message || "Something went wrong. Please try again.",
+          description: message,
           variant: "destructive",
         });
       }
     } catch (error) {
-      setSubmissionStatus('error');
       const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
-      setSubmissionMessage(errorMessage);
+      setSubmissionError(errorMessage);
       toast({
         title: "Submission Error",
         description: errorMessage,
@@ -87,14 +84,15 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
 
   return (
     <Card className={cn(
-      "w-full max-w-2xl mx-auto shadow-2xl border-2 border-primary/20 rounded-xl overflow-hidden",
+      "w-full max-w-2xl mx-auto shadow-2xl rounded-xl overflow-hidden",
+      !isPopup && "bg-black/30 backdrop-blur-xl border border-white/20 text-white",
       isPopup && "shadow-none border-none",
       className
     )}>
       {!isPopup && (
-        <CardHeader className="bg-primary/5 p-8">
-          <CardTitle className="text-3xl font-headline text-primary text-center">Ready to Take the Next Step?</CardTitle>
-          <CardDescription className="text-center text-muted-foreground text-base pt-2">
+        <CardHeader className="p-8 bg-transparent">
+          <CardTitle className="text-3xl font-headline text-white text-center">Ready to Take the Next Step?</CardTitle>
+          <CardDescription className="text-center text-base pt-2 text-white/90">
             Fill out the form below to learn more about the Bridge Program or to schedule a visit.
           </CardDescription>
         </CardHeader>
@@ -108,9 +106,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                 name="parentName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-foreground/80">Parent's Name</FormLabel>
+                    <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Parent's Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Jane Doe" {...field} className="bg-background border-border focus:ring-accent" />
+                      <Input placeholder="e.g., Jane Doe" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -121,9 +119,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                 name="childName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-foreground/80">Child's Name</FormLabel>
+                    <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Child's Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., John Doe" {...field} className="bg-background border-border focus:ring-accent" />
+                      <Input placeholder="e.g., John Doe" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -135,9 +133,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="grade"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground/80">Child's Current/Last Grade</FormLabel>
+                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Child's Current/Last Grade</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., K2, Grade 1" {...field} className="bg-background border-border focus:ring-accent" />
+                    <Input placeholder="e.g., K2, Grade 1" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -148,9 +146,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground/80">Email Address</FormLabel>
+                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="your.email@example.com" {...field} className="bg-background border-border focus:ring-accent" />
+                    <Input type="email" placeholder="your.email@example.com" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -161,9 +159,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-foreground/80">Phone Number</FormLabel>
+                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="+1 (555) 123-4567" {...field} className="bg-background border-border focus:ring-accent" />
+                    <Input type="tel" placeholder="+1 (555) 123-4567" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -171,23 +169,18 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
             />
             <Button
               type="submit"
-              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-3 rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-3 rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02]"
               disabled={form.formState.isSubmitting}
-              aria-label="Submit inquiry form"
+              aria-label="Submit enquiry form"
             >
               <Send className="mr-2 h-5 w-5" />
-              {form.formState.isSubmitting ? "Sending..." : "Submit Inquiry"}
+              {form.formState.isSubmitting ? "Sending..." : "Submit Enquiry"}
             </Button>
           </form>
         </Form>
-        {submissionStatus === 'success' && (
-          <div className="mt-4 p-4 rounded-md bg-primary/10 text-primary border border-primary/20 text-center">
-            {submissionMessage}
-          </div>
-        )}
-        {submissionStatus === 'error' && !form.formState.isSubmitting && (
-           <div className="mt-4 p-4 rounded-md bg-destructive/10 text-destructive border border-destructive/20 text-center">
-            {submissionMessage}
+        {submissionError && !form.formState.isSubmitting && (
+           <div className="mt-4 p-4 rounded-md bg-destructive/20 text-white border border-destructive/30 text-center">
+            {submissionError}
           </div>
         )}
       </CardContent>

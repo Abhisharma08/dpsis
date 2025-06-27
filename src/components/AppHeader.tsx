@@ -1,6 +1,17 @@
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+
+const navLinks = [
+  { href: "#highlights", label: "Benefits" },
+  { href: "#about", label: "About" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#home", label: "Enquire" },
+];
 
 const AppHeader = () => {
   return (
@@ -15,11 +26,42 @@ const AppHeader = () => {
             priority 
           />
         </Link>
-        <nav className="hidden md:flex gap-4">
-           <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>
-           <a href="#faq" className="text-foreground hover:text-primary transition-colors">FAQ</a>
-           <a href="#home" className="text-foreground hover:text-primary transition-colors">Enquire Now</a>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-6">
+           {navLinks.map((link) => (
+             <a key={link.href} href={link.href} className="text-foreground hover:text-primary transition-colors font-medium">{link.label}</a>
+           ))}
         </nav>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[250px]">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-4 mt-8">
+                {navLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <a
+                      href={link.href}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-accent/50 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </SheetClose>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
