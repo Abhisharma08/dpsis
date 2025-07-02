@@ -16,11 +16,11 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay"
 
 const quickLinks = [
-  { href: "#", label: "School Website", icon: Globe },
-  { href: "#", label: "School Fee", icon: Banknote },
-  { href: "#", label: "ECA and CCA", icon: Activity },
-  { href: "#", label: "School facilities", icon: Building2 },
-  { href: "#", label: "Cambridge Curriculum", icon: FileText },
+  { href: "https://dps.edu.sg/", label: "School Website", icon: Globe },
+  { href: "https://dps.edu.sg/admission-fee-structure-and-payment-modes/", label: "School Fee", icon: Banknote },
+  { href: "https://dps.edu.sg/eca-cca/", label: "ECA and CCA", icon: Activity },
+  { href: "https://dps.edu.sg/campus-facilities/", label: "School facilities", icon: Building2 },
+  { href: "https://dps.edu.sg/cambridge-curriculum/", label: "Cambridge Curriculum", icon: FileText },
   { href: "#", label: "ICSE Curriculum", icon: FileText },
 ];
 
