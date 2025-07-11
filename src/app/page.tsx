@@ -168,7 +168,7 @@ export default function HomePage() {
           </div>
           <div className="flex justify-center">
               <Image
-                  src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1750944922/1-01_wjohsz.png"
+                  src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1752226845/1_1_rl5yfq.png"
                   alt="Diagram showing the Bridge Program flow from Kindergarten to Primary 2"
                   width={800}
                   height={450}
