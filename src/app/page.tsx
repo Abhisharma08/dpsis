@@ -7,7 +7,8 @@ import ContactForm from '@/components/ContactForm';
 import { FeatureCard } from '@/components/FeatureCard';
 import {
   CheckCircle2, Banknote, Building2,CalendarCheck2, ArrowRightLeft, UsersRound,  BadgeCheck, GraduationCap, ExternalLink, Send, Globe, Activity, FileText, Quote, BookOpenCheck, FlaskConical, Atom, PencilRuler, Calculator, Award, Lightbulb, UserRoundCheck,  Users, ChartLine,
-  Trophy, BookMarked, MapPinned
+  Trophy, BookMarked, MapPinned,
+  Download
 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -758,6 +759,24 @@ export default function HomePage() {
             </Button>
           ))}
         </div>
+        <div className="mt-6 flex justify-center">
+  <Button
+    asChild
+    size="lg"
+    className="rounded-full px-8 py-6 text-base shadow-lg hover:scale-105 transition-transform"
+  >
+    <a
+      href="/assets/img/downloads/bridge-programme-newsletter.pdf"
+      download
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Download className="mr-2 h-5 w-5" />
+      Download Our Bridge Programme Newsletter
+    </a>
+  </Button>
+</div>
+        
       </SectionWrapper>
     </>
   );
