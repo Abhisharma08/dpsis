@@ -6,7 +6,8 @@ import { SectionWrapper } from '@/components/SectionWrapper';
 import ContactForm from '@/components/ContactForm';
 import { FeatureCard } from '@/components/FeatureCard';
 import {
-  Users, School, Banknote, Building2, GraduationCap, ExternalLink, HeartHandshake, Target, Send, Globe, Activity, FileText, Palette, Quote, BookOpenCheck, FlaskConical, Atom, PencilRuler, Calculator, Laptop, Award, TrendingUp, Wallet
+  CheckCircle2, Banknote, Building2,CalendarCheck2, ArrowRightLeft, UsersRound,  BadgeCheck, GraduationCap, ExternalLink, Send, Globe, Activity, FileText, Quote, BookOpenCheck, FlaskConical, Atom, PencilRuler, Calculator, Award, Lightbulb, UserRoundCheck,  Users, ChartLine,
+  Trophy, BookMarked, MapPinned
 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -18,37 +19,38 @@ import Autoplay from "embla-carousel-autoplay"
 const quickLinks = [
   { href: "https://dps.edu.sg/", label: "School Website", icon: Globe },
   { href: "https://dps.edu.sg/admission-fee-structure-and-payment-modes/", label: "School Fee", icon: Banknote },
-  { href: "https://dps.edu.sg/eca-cca/", label: "ECA and CCA", icon: Activity },
   { href: "https://dps.edu.sg/campus-facilities/", label: "School facilities", icon: Building2 },
-  { href: "https://dps.edu.sg/cambridge-curriculum/", label: "Cambridge Curriculum", icon: FileText },
-  { href: "#", label: "ICSE Curriculum", icon: FileText },
+  { href: "https://dps.edu.sg/cambridge-curriculum/", label: "Cambridge Curriculum", icon: BookOpenCheck },
+  { href: "#", label: "ICSE Curriculum", icon: BookMarked },
+  { href: "https://dps.edu.sg/eca-cca/", label: "Co-Curricular Activities", icon: Trophy },
+  { href: "https://dps.edu.sg/eca-cca/", label: "Campus Tour", icon: MapPinned },
 ];
 
 const programFeatures = [
   {
-    icon: HeartHandshake,
-    title: "Strong Support System",
-    description: "New joiners receive extra practice material and close teacher-parent coordination. If a student struggles, teachers provide individual support to strengthen concepts through worksheets and handouts."
+    icon: CalendarCheck2,
+    title: "Save an Academic Year",
+    description: "Your child joins school in January and progresses to Grade 2 in April upon successful completion of learning outcomes, eliminating the need to wait for the next academic cycle."
   },
   {
-    icon: BookOpenCheck,
-    title: "Comprehensive Study Material",
-    description: "Students receive a printed study kit covering all lessons. In case of absenteeism, photocopied notes are shared by the class teacher for easy catch-up."
+    icon: ArrowRightLeft,
+    title: "Smooth Transition from Kindergarten to Primary School",
+    description: "The program is specifically designed to bridge the gap between K2 and Grade 2 through focused academic preparation and skill development."
   },
   {
-    icon: Laptop,
-    title: "Early Online Support (Nov & Dec 2025)",
-    description: "Upon confirmation of admission, DPSIS offers complimentary online support classes in Nov & Dec to help students adjust before formal classes begin in January 2026."
+    icon: UsersRound,
+    title: "Small, Exclusive Learning Groups",
+    description: "Students are placed in dedicated Bridge Program classes, ensuring individual attention and personalised guidance."
   },
   {
-    icon: TrendingUp,
-    title: "Skill Development, the DPSIS Way",
-    description: "Our experienced teachers use differentiated instructional strategies to help students master essential Primary 2 skills. Regular assessments ensure consistent growth."
+    icon: GraduationCap,
+    title: "Experienced Primary Educators",
+    description: "Our specialist teachers understand the competencies required for Grade 2 success and use proven teaching strategies to accelerate learning confidently."
   },
   {
-    icon: Wallet,
-    title: "Flexible Fee Payment",
-    description: "Only Primary 1 fees are applicable from Jan–March, pro-rated for three months."
+    icon: BadgeCheck,
+    title: "12+ Years of Proven Success",
+    description: "12+ Years of Proven Success"
   },
   {
     icon: Award,
@@ -117,15 +119,15 @@ export default function HomePage() {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-6 text-center md:text-left">
-              <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-6xl font-headline font-bold text-white tracking-tight [text-shadow:2px_2px_8px_rgba(0,0,0,0.8)]">
-                Join <span className="text-primary">Bridge Program</span> in January 2026 at DPSIS
+              <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-5xl font-headline font-bold text-white tracking-tight [text-shadow:2px_2px_8px_rgba(0,0,0,0.8)]">
+                <span className="text-primary text-6xl">BRIDGE PROGRAM 2027</span> Start in January. Progress to Grade 2 in April.
               </h1>
               <p className="text-2xl sm:text-3xl font-headline text-white/90 [text-shadow:1px_1px_6px_rgba(0,0,0,0.8)]">
-                Nurturing Potential, Inspiring Confidence – Where Bright Futures Begin.
+                Start in January. Progress to Grade 2 in April.
               </p>
               <p className="text-lg text-white/90 leading-relaxed max-w-xl [text-shadow:1px_1px_4px_rgba(0,0,0,0.8)]">
-                Discover how the DPSIS Bridge Program empowers Kindergarten (K2) graduates to transition seamlessly into Primary 2 — in just 3 months.
-              </p>
+                A Smarter Start for Your Child's Primary School Journey
+                  </p>
             </div>
             <div className="w-full md:max-w-lg md:mx-auto">
               <ContactForm />
@@ -151,74 +153,136 @@ export default function HomePage() {
         </Dialog>
       </div>
 
-      {/* Highlights and Benefits Section */}
-      <SectionWrapper id="highlights" ariaLabelledBy="highlights-heading" className="relative overflow-hidden">
-        <div aria-hidden="true" className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 z-0">
-          <GraduationCap className="w-64 h-64 text-primary/5 -rotate-12" />
-        </div>
-        <div aria-hidden="true" className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 z-0">
-          <BookOpenCheck className="w-56 h-56 text-accent/5 rotate-12" />
-        </div>
-        <div className="relative z-10">
-          <div className="text-center mb-12">
-              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent">Highlights and benefits</span> of the Bridge Program to Primary 2</h2>
-              <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Discover how the DPSIS Bridge Program blends Cambridge’s inquiry-driven approach with expert guidance to ensure academic excellence, save an entire year, and support every learner’s journey forward.
-              </p>
-          </div>
-          <div className="flex justify-center">
-              <Image
-                  src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1752226845/1_1_rl5yfq.png"
-                  alt="Diagram showing the Bridge Program flow from Kindergarten to Primary 2"
-                  width={800}
-                  height={450}
-                  className="rounded-xl shadow-xl border object-contain w-full max-w-4xl h-auto"
-              />
-          </div>
-        </div>
-      </SectionWrapper>
+    {/* Program Overview Section */}
+<SectionWrapper
+  id="program-overview"
+  ariaLabelledBy="program-overview-heading"
+>
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center max-w-4xl mx-auto mb-12">
+      <h2
+        id="program-overview-heading"
+        className="text-3xl md:text-4xl font-headline font-semibold"
+      >
+        <span className="text-primary">Has your child completed Kindergarten (K2) and missed the April intake?</span>{" "}
+      </h2>
 
-      {/* About the Bridge Program Section */}
-      <SectionWrapper id="about" ariaLabelledBy="about-program-heading">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-           <div className="space-y-4">
-            <h2 id="about-program-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">About the <span className="text-accent">Bridge Program:</span></h2>
-            <p className="text-foreground/80 leading-relaxed">
-              Our Bridge Program is a specially designed academic track that helps K2 students complete a condensed Primary 1 curriculum from January to March 2026, preparing them to start Primary 2 in April 2026 with confidence.
-            </p>
-            <p className="text-foreground/80 leading-relaxed">
-              Built on a foundation of structured academics and inquiry-based learning, the program ensures:
-            </p>
-            <ul className="space-y-3 pt-2">
-              {[
-                { icon: Target, text: "Strong grasp of foundational concepts" },
-                { icon: Users, text: "Social-emotional readiness for Primary school" },
-                { icon: HeartHandshake, text: "Personalized support and regular assessments" },
-                { icon: Palette, text: "No compromise on co-curricular activities" },
-              ].map((item, index) => (
-                <li key={index} className="flex items-start gap-3 p-3 bg-background/50 backdrop-blur-md border border-primary/10 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <item.icon className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
-                  <span>{item.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-foreground/80 leading-relaxed pt-2">
-              With over a decade of proven results, the program supports a seamless transition and helps your child stay on track with peers — without losing an academic year.
-            </p>
-          </div>
+      <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
+    At DPS International School, your child doesn't have to wait another academic year.
+          </p>
+
+      <p className="mt-4 text-lg text-foreground/80 leading-relaxed">
+        Through our specially designed Bridge Program, eligible students can
+        begin their learning journey in January 2027, build essential Grade 1
+        competencies, and seamlessly transition into Primary 2 in April 2027
+        alongside their peers.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-6">
+
+      <Card className="border-primary/10 shadow-md">
+        <CardContent className="p-6 space-y-5">
+
           <div>
-            <Image
-              src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1751025615/550x400-01_zipxu5.jpg"
-              alt="Teacher guiding young students"
-              width={550}
-              height={400}
-              className="rounded-xl shadow-xl object-cover aspect-[11/8] w-full h-auto transition-transform duration-500 ease-in-out hover:scale-105"
-              data-ai-hint="teacher students"
-            />
+            <h3 className="font-semibold text-primary text-lg">
+              Eligibility
+            </h3>
+            <p className="text-foreground/80 mt-1">
+              Completion of KG2
+            </p>
           </div>
-        </div>
-      </SectionWrapper>
-      
+
+          <div>
+            <h3 className="font-semibold text-primary text-lg">
+              Duration
+            </h3>
+            <p className="text-foreground/80 mt-1">
+              3 months (Jan 2027 – Mar 2027), followed by Primary 2
+              (Apr 2027 – Mar 2028)
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-primary text-lg">
+              School Hours
+            </h3>
+            <p className="text-foreground/80 mt-1">
+              9:00 AM – 3:30 PM
+            </p>
+          </div>
+
+        </CardContent>
+      </Card>
+
+      <Card className="border-primary/10 shadow-md">
+        <CardContent className="p-6 space-y-5">
+
+          <div>
+            <h3 className="font-semibold text-primary text-lg">
+              Subjects Offered
+            </h3>
+
+            <p className="text-foreground/80 mt-2 leading-relaxed">
+              English, Mathematics, Science, Computer Studies, and one
+              Second Language (Hindi, Tamil or French), along with
+              Abacus as part of the curriculum.
+            </p>
+
+            <p className="text-foreground/80 mt-3 leading-relaxed">
+              Students also benefit from activity-based learning,
+              project-based learning, value-based learning and engaging
+              subject weeks.
+            </p>
+          </div>
+
+        </CardContent>
+      </Card>
+
+      <Card className="border-primary/10 shadow-md md:col-span-2">
+        <CardContent className="p-6">
+
+          <div className="space-y-6">
+
+            <div>
+              <h3 className="font-semibold text-primary text-lg">
+                Holistic Development
+              </h3>
+
+              <p className="text-foreground/80 mt-2 leading-relaxed">
+                Co-curricular (CCA) and extracurricular (ECA) activities are
+                an integral part of the programme. All activities are conducted
+                within the DPSIS campus during regular school hours
+                (9:00 AM – 3:30 PM) and are included in the tuition fee.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-primary text-lg">
+                Exclusive Classes Under Expert Guidance
+              </h3>
+
+              <p className="text-foreground/80 mt-2 leading-relaxed">
+                January intake students are grouped into dedicated classes
+                where experienced teachers use differentiated instructional
+                strategies tailored for accelerated learning. Regular
+                assessments and timely feedback ensure every child develops
+                the skills and confidence needed for a successful transition
+                into Primary 2.
+              </p>
+            </div>
+
+          </div>
+
+        </CardContent>
+      </Card>
+
+    </div>
+  </div>
+</SectionWrapper>
+
+
+
       {/* Why Parents Choose Section */}
       <SectionWrapper id="why-choose-us" ariaLabelledBy="why-choose-us-heading" className="relative overflow-hidden">
         <div aria-hidden="true" className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 z-0">
@@ -246,11 +310,327 @@ export default function HomePage() {
           </div>
         </div>
       </SectionWrapper>
+
+      {/* About the Bridge Program Section */}
+      <SectionWrapper id="about" ariaLabelledBy="about-program-heading">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+           <div className="space-y-4">
+            <h2 id="about-program-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">What Your Child<span className="text-accent"> Will Learn </span></h2>
+            <p className="text-foreground/80 leading-relaxed">
+            Our curriculum focuses on mastering the foundational skills needed for Grade 2 success:
+            </p>
+            <ul className="space-y-3 pt-2">
+              {[
+                { icon: CheckCircle2, text: "Reading & Comprehension" },
+                { icon: CheckCircle2, text: "Writing & Creative Expression" },
+                { icon: CheckCircle2, text: "Communication & Presentation Skills" },
+                { icon: CheckCircle2, text: "Numeracy & Problem Solving" },
+                { icon: CheckCircle2, text: "Science Exploration" },
+                { icon: CheckCircle2, text: "Independent Learning Skills" },
+                { icon: CheckCircle2, text: "Independent Learning Skills" },
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-3 p-3 bg-background/50 backdrop-blur-md border border-primary/10 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <item.icon className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                  <span>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-foreground/80 leading-relaxed pt-2">
+              Regular assessments help track progress and ensure every child receives the support needed to thrive.
+            </p>
+          </div>
+          <div>
+            <Image
+              src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1751025615/550x400-01_zipxu5.jpg"
+              alt="Teacher guiding young students"
+              width={550}
+              height={400}
+              className="rounded-xl shadow-xl object-cover aspect-[11/8] w-full h-auto transition-transform duration-500 ease-in-out hover:scale-105"
+              data-ai-hint="teacher students"
+            />
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Curriculum Philosophy Section */}
+<SectionWrapper
+  id="curriculum-philosophy"
+  ariaLabelledBy="curriculum-philosophy-heading"
+>
+  <div className="text-center max-w-4xl mx-auto mb-14">
+    <h2
+      id="curriculum-philosophy-heading"
+      className="text-3xl md:text-4xl font-headline font-semibold"
+    >
+      <span className="text-primary">A Curriculum Designed for</span>{" "}
+      <span className="text-accent">Future Success</span>
+    </h2>
+
+    <p className="mt-5 text-lg text-foreground/80 leading-relaxed">
+      The DPSIS Bridge Program combines strong academic foundations with
+      modern teaching methodologies to prepare children for lifelong
+      learning and future success.
+    </p>
+  </div>
+
+  <div className="relative grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+
+    {/* ICSE */}
+    <Card className="border-primary/10 shadow-md h-full">
+      <CardContent className="p-8 text-center">
+        <BookOpenCheck className="h-14 w-14 mx-auto text-primary mb-5" />
+
+        <h3 className="text-2xl font-semibold text-primary mb-4">
+          ICSE Foundations
+        </h3>
+
+        <p className="text-foreground/80 leading-relaxed">
+          Strong fundamentals in literacy, numeracy, conceptual
+          understanding, and core academic skills that build confidence
+          for Primary 2 and beyond.
+        </p>
+      </CardContent>
+    </Card>
+
+    {/* Plus Sign */}
+    <div className="hidden lg:flex items-center justify-center">
+      <div className="h-16 w-16 rounded-full bg-accent text-white flex items-center justify-center text-4xl font-bold shadow-lg">
+        +
+      </div>
+    </div>
+
+    {/* Cambridge */}
+    <Card className="border-primary/10 shadow-md h-full">
+      <CardContent className="p-8 text-center">
+        <Lightbulb className="h-14 w-14 mx-auto text-accent mb-5" />
+
+        <h3 className="text-2xl font-semibold text-primary mb-4">
+          Cambridge Learning Approach
+        </h3>
+
+        <p className="text-foreground/80 leading-relaxed">
+          Inquiry-based learning, critical thinking, collaboration,
+          communication, and real-world application that encourage
+          curiosity and independent learning.
+        </p>
+      </CardContent>
+    </Card>
+
+  </div>
+
+  <div className="mt-12 max-w-4xl mx-auto">
+    <div className="rounded-2xl border border-primary/10 bg-primary/5 p-8 text-center">
+      <h3 className="text-2xl font-semibold text-primary mb-4">
+        The Best of Both Approaches
+      </h3>
+
+      <p className="text-lg text-foreground/80 leading-relaxed">
+        This unique combination helps children become confident,
+        independent learners who are well prepared for academic
+        excellence while developing the critical thinking and
+        problem-solving skills needed for future challenges.
+      </p>
+    </div>
+  </div>
+</SectionWrapper>
+
+
+      {/* Highlights and Benefits Section */}
+      <SectionWrapper id="highlights" ariaLabelledBy="highlights-heading" className="relative overflow-hidden">
+        <div aria-hidden="true" className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 z-0">
+          <GraduationCap className="w-64 h-64 text-primary/5 -rotate-12" />
+        </div>
+        <div aria-hidden="true" className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 z-0">
+          <BookOpenCheck className="w-56 h-56 text-accent/5 rotate-12" />
+        </div>
+        <div className="relative z-10">
+          <div className="text-center mb-12">
+              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent">Highlights and benefits</span> of the Bridge Program to Primary 2</h2>
+              <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+                Discover how the DPSIS Bridge Program blends Cambridge’s inquiry-driven approach with expert guidance to ensure academic excellence, save an entire year, and support every learner’s journey forward.
+              </p>
+          </div>
+          <div className="flex justify-center">
+              <Image
+                  src="https://res.cloudinary.com/dw9v7jjrq/image/upload/v1783333862/1_1_rl5yfq_1_psefta.png"
+                  alt="Diagram showing the Bridge Program flow from Kindergarten to Primary 2"
+                  width={800}
+                  height={450}
+                  className="rounded-xl shadow-xl border object-contain w-full max-w-4xl h-auto"
+              />
+          </div>
+        </div>
+      </SectionWrapper>
+      
+
+
+      {/* Complimentary Online Support Section */}
+<SectionWrapper
+  id="online-support"
+  ariaLabelledBy="online-support-heading"
+  className="bg-gradient-to-r from-primary/5 to-accent/5"
+>
+  <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+    {/* Content */}
+    <div>
+
+      <div className="inline-flex items-center rounded-full bg-accent text-accent-foreground px-4 py-2 text-sm font-semibold mb-5">
+        November & December 2026
+      </div>
+
+      <h2
+        id="online-support-heading"
+        className="text-3xl md:text-4xl font-headline font-semibold"
+      >
+        <span className="text-primary">Complimentary</span>{" "}
+        <span className="text-accent">Online Support Classes</span>
+      </h2>
+
+      <p className="mt-5 text-lg text-foreground/80 leading-relaxed">
+        Once admission is confirmed, every student receives access to
+        complimentary online preparatory sessions before the academic year
+        begins.
+      </p>
+
+      <p className="mt-6 font-semibold text-primary">
+        These sessions help children:
+      </p>
+
+      <div className="mt-5 space-y-4">
+
+        {[
+          "Become familiar with teachers and classroom expectations",
+          "Develop confidence before joining school",
+          "Begin learning key concepts early",
+          "Transition smoothly into the January program",
+        ].map((item) => (
+          <div
+            key={item}
+            className="flex items-start gap-3"
+          >
+            <CheckCircle2 className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+            <span className="text-foreground/90">{item}</span>
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+
+    {/* Image */}
+    <div>
+      <Image
+        src="https://res.cloudinary.com/dw9v7jjrq/image/upload/v1783332089/download_qaxlmp.jpg"
+        alt="Teacher conducting an online class with young students"
+        width={600}
+        height={500}
+        className="rounded-2xl shadow-xl object-cover w-full h-auto"
+      />
+    </div>
+
+  </div>
+</SectionWrapper>
+
+{/* Continuous Support Section */}
+<SectionWrapper
+  id="continuous-support"
+  ariaLabelledBy="continuous-support-heading"
+>
+  <div className="text-center max-w-4xl mx-auto mb-14">
+
+    <h2
+      id="continuous-support-heading"
+      className="text-3xl md:text-4xl font-headline font-semibold"
+    >
+      <span className="text-primary">Continuous Support</span>{" "}
+      <span className="text-accent">Every Step of the Way</span>
+    </h2>
+
+    <p className="mt-5 text-lg text-foreground/80 leading-relaxed">
+      At DPSIS, we believe every child learns differently. That's why our
+      Bridge Program provides continuous academic guidance, personalised
+      support, and regular progress monitoring throughout the journey.
+    </p>
+
+  </div>
+
+  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+    {[
+      {
+        icon: FileText,
+        title: "Additional Worksheets",
+        description:
+          "Extra worksheets and practice materials reinforce classroom learning."
+      },
+      {
+        icon: UserRoundCheck,
+        title: "Personalised Teacher Guidance",
+        description:
+          "Individual attention ensures every child receives support based on their learning needs."
+      },
+      {
+        icon: Users,
+        title: "Parent-Teacher Collaboration",
+        description:
+          "Regular communication keeps parents informed and actively involved in their child's progress."
+      },
+      {
+        icon: BookOpenCheck,
+        title: "Study Kits & Learning Resources",
+        description:
+          "Printed study kits and classroom resources help students continue learning with confidence."
+      },
+      {
+        icon: ChartLine,
+        title: "Progress Monitoring",
+        description:
+          "Continuous assessments and feedback help every student stay on track for Primary 2."
+      },
+    ].map((item) => (
+      <Card
+        key={item.title}
+        className="border-primary/10 shadow-md hover:shadow-xl transition-all"
+      >
+        <CardContent className="p-7">
+
+          <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+            <item.icon className="h-7 w-7 text-accent" />
+          </div>
+
+          <h3 className="text-xl font-semibold text-primary mb-3">
+            {item.title}
+          </h3>
+
+          <p className="text-foreground/80 leading-relaxed">
+            {item.description}
+          </p>
+
+        </CardContent>
+      </Card>
+    ))}
+
+  </div>
+
+  <div className="mt-12 max-w-4xl mx-auto">
+    <div className="rounded-2xl bg-primary text-primary-foreground p-8 text-center shadow-xl">
+      <h3 className="text-2xl font-headline font-semibold mb-3">
+        Our Goal
+      </h3>
+
+      <p className="text-lg leading-relaxed">
+        Ensure every child is fully prepared, academically confident,
+        and ready to transition successfully into <strong>Primary 2.</strong>
+      </p>
+    </div>
+  </div>
+</SectionWrapper>
       
       {/* Parent Testimonial Section */}
       <SectionWrapper id="testimonial" ariaLabelledBy="testimonial-heading">
         <div className="text-center mb-12">
-          <h2 id="testimonial-heading" className="text-3xl md:text-4xl font-headline font-semibold"><span className="text-primary">Parent</span> <span className="text-accent">Testimonials</span></h2>
+          <h2 id="testimonial-heading" className="text-3xl md:text-4xl font-headline font-semibold"><span className="text-primary">What Parents Say</span></h2>
           <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto">Parents share their heartfelt experiences with the DPSIS Bridge Program.</p>
         </div>
         <Carousel
@@ -308,9 +688,12 @@ export default function HomePage() {
       {/* Limited Seats Section */}
       <SectionWrapper id="offer" ariaLabelledBy="offer-heading" className="bg-gradient-to-tr from-accent/20 to-accent/5 py-12 md:py-16">
         <div className="text-center">
-          <h2 id="offer-heading" className="text-3xl font-headline font-bold text-primary">Limited Seats. <span className="text-accent">Special Offer.</span></h2>
+          <h2 id="offer-heading" className="text-3xl font-headline font-bold text-primary">Limited Seats <span className="text-accent">Available</span></h2>
           <p className="mt-3 text-lg text-foreground/80 max-w-2xl mx-auto">
-            Seats are offered on a first-come, first-served basis. A limited-time waiver on the registration fee is currently available.
+            Admissions are offered strictly based on seat availability and on a first-come, first-served basis.
+          </p>
+          <p className="mt-3 text-lg text-foreground/80 max-w-2xl mx-auto">
+            Special Registration Fee Waiver Available for a Limited Period
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
@@ -364,7 +747,7 @@ export default function HomePage() {
           <h2 id="quick-links-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Quick <span className="text-accent">Links</span></h2>
           <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">Explore more about DPSIS and what we offer.</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-4 md:gap-6">
           {quickLinks.map((link) => (
             <Button key={link.label} asChild variant="outline" className="flex flex-col items-center justify-center h-32 p-4 text-center bg-card border shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out group hover:bg-accent hover:text-accent-foreground">
               <a href={link.href} target="_blank" rel="noopener noreferrer">
