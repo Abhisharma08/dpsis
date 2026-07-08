@@ -342,7 +342,7 @@ export default function HomePage() {
           </div>
           <div>
             <Image
-              src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1751025615/550x400-01_zipxu5.jpg"
+              src="https://res.cloudinary.com/dw9v7jjrq/image/upload/v1783498333/ChatGPT_Image_Jul_8_2026_01_13_46_PM_rsgpqo.png"
               alt="Teacher guiding young students"
               width={550}
               height={400}
@@ -446,7 +446,7 @@ export default function HomePage() {
         </div>
         <div className="relative z-10">
           <div className="text-center mb-12">
-              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent">Highlights and benefits</span> <br /> of the Bridge Program to Primary 2</h2>
+              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent"> <br /> Highlights and benefits</span> of the Bridge Program to Primary 2</h2>
               <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
                 Discover how the DPSIS Bridge Program blends Cambridge’s inquiry-driven approach with expert guidance to ensure academic excellence, save an entire year, and support every learner’s journey forward.
               </p>
@@ -522,7 +522,7 @@ export default function HomePage() {
     {/* Image */}
     <div>
       <Image
-        src="https://res.cloudinary.com/dw9v7jjrq/image/upload/v1783332089/download_qaxlmp.jpg"
+        src="https://res.cloudinary.com/dw9v7jjrq/image/upload/v1783498334/ChatGPT_Image_Jul_8_2026_01_21_04_PM_rhig7b.png"
         alt="Teacher conducting an online class with young students"
         width={600}
         height={500}
