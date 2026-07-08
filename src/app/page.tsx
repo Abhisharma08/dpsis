@@ -22,7 +22,7 @@ const quickLinks = [
   { href: "https://dps.edu.sg/admission-fee-structure-and-payment-modes/", label: "School Fee", icon: Banknote },
   { href: "https://dps.edu.sg/campus-facilities/", label: "School facilities", icon: Building2 },
   { href: "https://dps.edu.sg/cambridge-curriculum/", label: "Cambridge Curriculum", icon: BookOpenCheck },
-  { href: "https://dps.edu.sg/icse-curriculum/", label: "ICSE Curriculum", icon: BookMarked },
+  { href: "https://dps.edu.sg/cisce-curriculum/", label: "ICSE Curriculum", icon: BookMarked },
   { href: "https://dps.edu.sg/eca-cca/", label: "Co-Curricular Activities", icon: Trophy },
   { href: "https://dps.edu.sg/eca-cca/", label: "Campus Tour", icon: MapPinned },
 ];
