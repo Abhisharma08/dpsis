@@ -22,7 +22,7 @@ const quickLinks = [
   { href: "https://dps.edu.sg/admission-fee-structure-and-payment-modes/", label: "School Fee", icon: Banknote },
   { href: "https://dps.edu.sg/campus-facilities/", label: "School facilities", icon: Building2 },
   { href: "https://dps.edu.sg/cambridge-curriculum/", label: "Cambridge Curriculum", icon: BookOpenCheck },
-  { href: "#", label: "ICSE Curriculum", icon: BookMarked },
+  { href: "https://dps.edu.sg/icse-curriculum/", label: "ICSE Curriculum", icon: BookMarked },
   { href: "https://dps.edu.sg/eca-cca/", label: "Co-Curricular Activities", icon: Trophy },
   { href: "https://dps.edu.sg/eca-cca/", label: "Campus Tour", icon: MapPinned },
 ];
@@ -121,7 +121,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-6 text-center md:text-left">
               <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-5xl font-headline font-bold text-white tracking-tight [text-shadow:2px_2px_8px_rgba(0,0,0,0.8)]">
-                <span className="text-primary text-6xl">BRIDGE PROGRAM 2027</span> Start in January. Progress to Grade 2 in April.
+                <span className="text-primary text-6xl">BRIDGE PROGRAM 2027</span>
               </h1>
               <p className="text-2xl sm:text-3xl font-headline text-white/90 [text-shadow:1px_1px_6px_rgba(0,0,0,0.8)]">
                 Start in January. Progress to Grade 2 in April.
@@ -328,7 +328,7 @@ export default function HomePage() {
                 { icon: CheckCircle2, text: "Numeracy & Problem Solving" },
                 { icon: CheckCircle2, text: "Science Exploration" },
                 { icon: CheckCircle2, text: "Independent Learning Skills" },
-                { icon: CheckCircle2, text: "Independent Learning Skills" },
+                { icon: CheckCircle2, text: "Social & Emotional Readiness" },
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3 p-3 bg-background/50 backdrop-blur-md border border-primary/10 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <item.icon className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
@@ -446,7 +446,7 @@ export default function HomePage() {
         </div>
         <div className="relative z-10">
           <div className="text-center mb-12">
-              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent">Highlights and benefits</span> of the Bridge Program to Primary 2</h2>
+              <h2 id="highlights-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">Why opt for it? <span className="text-accent">Highlights and benefits</span> <br /> of the Bridge Program to Primary 2</h2>
               <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
                 Discover how the DPSIS Bridge Program blends Cambridge’s inquiry-driven approach with expert guidance to ensure academic excellence, save an entire year, and support every learner’s journey forward.
               </p>
