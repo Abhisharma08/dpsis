@@ -27,7 +27,7 @@ const formSchema = z.object({
   childName: z.string().min(2, { message: "Child's name must be at least 2 characters." }).max(100),
   grade: z.string().min(1, { message: "Grade is required." }).max(50),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().regex(/^\+?[0-9\s-()]{10,20}$/, { message: "Please enter a valid phone number." }),
+  phone: z.string().regex(/^\+?[0-9\s()-]{10,20}$/, { message: "Please enter a valid phone number." }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;
