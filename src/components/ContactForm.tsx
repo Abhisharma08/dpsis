@@ -103,7 +103,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                   <FormItem>
                     <FormLabel className={"text-foreground text-sm font-medium"}>Parent's Name</FormLabel>
                     <FormControl>
-                      <Input autoComplete="name" maxLength={100} placeholder="e.g., Jane Doe" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
+                      <Input autoComplete="name" maxLength={100} placeholder="Parent name" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -116,7 +116,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                   <FormItem>
                     <FormLabel className={"text-foreground text-sm font-medium"}>Child's Name</FormLabel>
                     <FormControl>
-                      <Input autoComplete="off" maxLength={100} placeholder="e.g., John Doe" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
+                      <Input autoComplete="off" maxLength={100} placeholder="Child name" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -143,7 +143,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                 <FormItem>
                   <FormLabel className={"text-foreground text-sm font-medium"}>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" autoComplete="email" maxLength={254} placeholder="your.email@example.com" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
+                    <Input type="email" autoComplete="email" maxLength={254} placeholder="Your email" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -156,7 +156,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                 <FormItem>
                   <FormLabel className={"text-foreground text-sm font-medium"}>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" autoComplete="tel" maxLength={25} placeholder="+1 (555) 123-4567" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
+                    <Input type="tel" autoComplete="tel" maxLength={25} placeholder="10 digit mobile number" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -31,22 +31,30 @@ export async function saveHubSpotEnquiry(input: EnquiryFormInput): Promise<void>
   }
 
   const emailPath = `/contacts/${encodeURIComponent(input.email)}?idProperty=email`;
+  const childProperties = { child_name: input.childName, grade: input.grade };
+  async function updateChildProperties(response: Response): Promise<string> {
+    const id = await recordId(response);
+    return recordId(await request(`/contacts/${encodeURIComponent(id)}`, 'PATCH', {
+      properties: childProperties,
+    }));
+  }
   const existing = await request(emailPath, 'GET');
   let contactId: string;
   if (existing.ok) {
-    // Preserve existing CRM fields. The note stores all newly submitted details.
-    contactId = await recordId(existing);
+    // Update the latest child details while preserving other existing CRM fields.
+    contactId = await updateChildProperties(existing);
   } else if (existing.status === 404) {
     const [firstname, ...lastNames] = input.parentName.split(/\s+/);
     const created = await request('/contacts', 'POST', {
       properties: {
         email: input.email, firstname, lastname: lastNames.join(' '),
         phone: input.phone, lifecyclestage: 'lead',
+        ...childProperties,
       },
     });
     // Handle another submission creating this parent during the lookup.
     contactId = created.status === 409
-      ? await recordId(await request(emailPath, 'GET'))
+      ? await updateChildProperties(await request(emailPath, 'GET'))
       : await recordId(created);
   } else {
     throw new Error(`HubSpot lookup failed (${existing.status}).`);

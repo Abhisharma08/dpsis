@@ -36,7 +36,7 @@ test('creates a new lead and associates a safely escaped note with every enquiry
   await saveHubSpotEnquiry(input);
   assert.equal(calls.length, 3);
   assert.match(calls[0].url, /jane%40example.com\?idProperty=email$/);
-  assert.deepEqual(calls[1].body.properties, { email: input.email, firstname: 'Jane', lastname: 'Doe', phone: input.phone, lifecyclestage: 'lead' });
+  assert.deepEqual(calls[1].body.properties, { email: input.email, firstname: 'Jane', lastname: 'Doe', phone: input.phone, lifecyclestage: 'lead', child_name: input.childName, grade: input.grade });
   assert.equal(calls[2].body.associations[0].to.id, '123');
   const note = calls[2].body.properties.hs_note_body;
   for (const value of ['Jane Doe', 'Sam &lt;Doe&gt;', 'K2', input.email, input.phone, '2027']) assert.ok(note.includes(value));
@@ -47,18 +47,21 @@ test('creates a new lead and associates a safely escaped note with every enquiry
   }
 });
 
-test('reuses an existing contact without overwriting CRM properties', async () => {
-  const calls = mockHubSpot([{ status: 200, body: { id: 'existing' } }, { status: 201, body: { id: 'note' } }]);
+test('updates child properties on existing contacts while preserving other CRM fields', async () => {
+  const calls = mockHubSpot([{ status: 200, body: { id: 'existing' } }, { status: 200, body: { id: 'existing' } }, { status: 201, body: { id: 'note' } }]);
   await saveHubSpotEnquiry(input);
-  assert.deepEqual(calls.map(call => call.method), ['GET', 'POST']);
-  assert.match(calls[1].url, /\/notes$/);
-  assert.equal(calls[1].body.associations[0].to.id, 'existing');
+  assert.deepEqual(calls.map(call => call.method), ['GET', 'PATCH', 'POST']);
+  assert.match(calls[1].url, /\/contacts\/existing$/);
+  assert.deepEqual(calls[1].body.properties, { child_name: input.childName, grade: input.grade });
+  assert.match(calls[2].url, /\/notes$/);
+  assert.equal(calls[2].body.associations[0].to.id, 'existing');
 });
 
 test('recovers from a concurrent duplicate-contact conflict', async () => {
-  const calls = mockHubSpot([{ status: 404 }, { status: 409 }, { status: 200, body: { id: 'existing' } }, { status: 201, body: { id: 'note' } }]);
+  const calls = mockHubSpot([{ status: 404 }, { status: 409 }, { status: 200, body: { id: 'existing' } }, { status: 200, body: { id: 'existing' } }, { status: 201, body: { id: 'note' } }]);
   await saveHubSpotEnquiry(input);
-  assert.equal(calls[3].body.associations[0].to.id, 'existing');
+  assert.deepEqual(calls[3].body.properties, { child_name: input.childName, grade: input.grade });
+  assert.equal(calls[4].body.associations[0].to.id, 'existing');
 });
 
 test('fails before making a request when no token is configured', async () => {
@@ -77,8 +80,14 @@ for (const status of [401, 403, 429, 500]) {
 }
 
 test('does not report success if the enquiry note fails', async () => {
-  mockHubSpot([{ status: 200, body: { id: '123' } }, { status: 500 }]);
+  mockHubSpot([{ status: 200, body: { id: '123' } }, { status: 200, body: { id: '123' } }, { status: 500 }]);
   await assert.rejects(saveHubSpotEnquiry(input));
+});
+
+test('does not save a note or report success if child properties cannot be updated', async () => {
+  const calls = mockHubSpot([{ status: 200, body: { id: '123' } }, { status: 400 }]);
+  await assert.rejects(saveHubSpotEnquiry(input));
+  assert.equal(calls.length, 2);
 });
 
 test('propagates network failures and malformed record responses', async () => {
