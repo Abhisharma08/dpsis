@@ -4,6 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { enquirySchema, type EnquiryFormInput } from "@/lib/enquiry-schema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,16 +20,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { submitEnquiry, type EnquiryFormInput } from "@/ai/flows/submit-inquiry-flow";
+import { submitEnquiry } from "@/ai/flows/submit-inquiry-flow";
 import { useRouter } from "next/navigation";
 
-const formSchema = z.object({
-  parentName: z.string().min(2, { message: "Parent's name must be at least 2 characters." }).max(100),
-  childName: z.string().min(2, { message: "Child's name must be at least 2 characters." }).max(100),
-  grade: z.string().min(1, { message: "Grade is required." }).max(50),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().regex(/^\+?[0-9\s-()]{10,20}$/, { message: "Please enter a valid phone number." }),
-});
+const formSchema = enquirySchema;
 
 type ContactFormValues = z.infer<typeof formSchema>;
 
@@ -72,7 +67,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
         });
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
+      const errorMessage = "Unable to submit your enquiry. Please try again.";
       setSubmissionError(errorMessage);
       toast({
         title: "Submission Error",
@@ -84,31 +79,31 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
 
   return (
     <Card className={cn(
-      "w-full max-w-2xl mx-auto shadow-2xl rounded-xl overflow-hidden",
-      !isPopup && "bg-black/30 backdrop-blur-xl border border-white/20 text-white",
+      "w-full max-w-2xl mx-auto rounded-3xl overflow-hidden border border-accent/10 bg-white text-foreground",
+      !isPopup && "shadow-[0_16px_60px_-20px_rgba(28,43,70,0.22)]",
       isPopup && "shadow-none border-none",
       className
     )}>
       {!isPopup && (
-        <CardHeader className="p-8 bg-transparent">
-          <CardTitle className="text-3xl font-headline text-white text-center">Ready to Take the Next Step?</CardTitle>
-          <CardDescription className="text-center text-base pt-2 text-white/90">
+        <CardHeader className="p-6 sm:p-8 pb-0 sm:pb-0 bg-transparent">
+          <CardTitle className="text-3xl font-headline text-accent text-left">Ready to Take the Next Step?</CardTitle>
+          <CardDescription className="text-left text-sm leading-relaxed pt-2 text-muted-foreground">
             Fill out the form below to learn more about the Bridge Program or to schedule a visit.
           </CardDescription>
         </CardHeader>
       )}
-      <CardContent className={cn("p-8", isPopup && "p-0 pt-4")}>
+      <CardContent className={cn("p-6 sm:p-8", isPopup && "p-0 pt-4")}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" aria-busy={form.formState.isSubmitting}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="parentName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Parent's Name</FormLabel>
+                    <FormLabel className={"text-foreground text-sm font-medium"}>Parent's Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Jane Doe" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
+                      <Input autoComplete="name" maxLength={100} placeholder="e.g., Jane Doe" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -119,9 +114,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
                 name="childName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Child's Name</FormLabel>
+                    <FormLabel className={"text-foreground text-sm font-medium"}>Child's Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., John Doe" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
+                      <Input autoComplete="off" maxLength={100} placeholder="e.g., John Doe" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -133,9 +128,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="grade"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Child's Current/Last Grade</FormLabel>
+                  <FormLabel className={"text-foreground text-sm font-medium"}>Child's Current/Last Grade</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., K2, Grade 1" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
+                    <Input maxLength={50} placeholder="e.g., K2, Grade 1" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -146,9 +141,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Email Address</FormLabel>
+                  <FormLabel className={"text-foreground text-sm font-medium"}>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="your.email@example.com" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
+                    <Input type="email" autoComplete="email" maxLength={254} placeholder="your.email@example.com" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,9 +154,9 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(isPopup ? "text-foreground/80" : "text-white/90")}>Phone Number</FormLabel>
+                  <FormLabel className={"text-foreground text-sm font-medium"}>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="+1 (555) 123-4567" {...field} className={cn("focus-visible:ring-accent", isPopup ? "bg-background placeholder:text-foreground/60 border-border" : "bg-black/20 placeholder:text-white/70 border-white/30 text-white" )} />
+                    <Input type="tel" autoComplete="tel" maxLength={25} placeholder="+1 (555) 123-4567" {...field} className={"h-12 rounded-xl bg-background/60 border-border placeholder:text-muted-foreground focus-visible:ring-accent"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -169,7 +164,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
             />
             <Button
               type="submit"
-              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-3 rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02]"
+              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-base h-12 rounded-xl font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02]"
               disabled={form.formState.isSubmitting}
               aria-label="Submit enquiry form"
             >
@@ -179,7 +174,7 @@ export default function ContactForm({ onSuccess, isPopup = false, className }: C
           </form>
         </Form>
         {submissionError && !form.formState.isSubmitting && (
-           <div className="mt-4 p-4 rounded-md bg-destructive/20 text-white border border-destructive/30 text-center">
+           <div role="alert" className="mt-4 p-4 rounded-md bg-destructive/10 text-destructive border border-destructive/30 text-center">
             {submissionError}
           </div>
         )}

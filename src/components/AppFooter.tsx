@@ -57,7 +57,7 @@ const socialLinks = [
 const AppFooter = () => {
   return (
     <footer className="bg-muted border-t border-border mt-auto">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground space-y-8 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground space-y-8 py-12">
         
         {/* PEI Registration and Education Partners */}
         <div>
@@ -68,7 +68,7 @@ const AppFooter = () => {
               alt="Singapore SME 500 Award 2024"
               width={500}
               height={700}
-              className="rounded-md shadow-lg w-full max-w-md h-auto"
+              className="rounded-md shadow-lg w-full max-w-[240px] h-auto"
               data-ai-hint="award certificate"
             />
           </div>
@@ -90,7 +90,7 @@ const AppFooter = () => {
       </div>
       
       {/* Copyright Footer */}
-      <div className="bg-primary/5 py-4">
+      <div className="bg-primary/5 pt-6 pb-24 md:pb-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
           <p className="font-semibold">&copy; {new Date().getFullYear()} DPSIS. All rights reserved.</p>
           <p className="text-sm mt-1">Empowering young minds for a brighter future.</p>

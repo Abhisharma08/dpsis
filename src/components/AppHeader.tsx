@@ -7,20 +7,21 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle 
 import { Menu } from 'lucide-react';
 
 const navLinks = [
-  { href: "#highlights", label: "Benefits" },
-  { href: "#about", label: "About" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#home", label: "Enquire" },
+  { href: "/#highlights", label: "Benefits" },
+  { href: "/#about", label: "About" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#enquiry", label: "Enquire" },
 ];
 
 const AppHeader = () => {
   return (
-    <header className="bg-background/80 backdrop-blur-md sticky top-0 z-50 py-3 shadow-md">
+    <header className="bg-white/95 backdrop-blur-md sticky top-0 z-40 py-2 border-b border-accent/10">
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <Image 
             src="https://cdn.lugc.link/ba71d94d-c3cf-44c7-9764-294540f5cc26/-/preview/108x76/-/format/auto/" 
             alt="DPSIS Logo" 
+            className="w-[86px] h-auto"
             width={108} 
             height={76} 
             priority 
@@ -28,9 +29,9 @@ const AppHeader = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
+        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
            {navLinks.map((link) => (
-             <a key={link.href} href={link.href} className="text-foreground hover:text-primary transition-colors font-medium">{link.label}</a>
+             <a key={link.href} href={link.href} className={link.label === "Enquire" ? "rounded-full bg-primary px-6 py-3 text-white text-sm font-semibold hover:bg-primary/90" : "text-sm text-foreground hover:text-primary transition-colors font-medium"}>{link.label}</a>
            ))}
         </nav>
 

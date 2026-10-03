@@ -13,9 +13,9 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from "embla-carousel-autoplay"
+
 
 const quickLinks = [
   { href: "https://dps.edu.sg/", label: "School Website", icon: Globe },
@@ -50,13 +50,13 @@ const programFeatures = [
   },
   {
     icon: BadgeCheck,
-    title: "12+ Years of Proven Success",
-    description: "12+ Years of Proven Success"
+    title: "13+ years of Proven Success",
+    description: "13+ years of Proven Success"
   },
   {
     icon: Award,
     title: "Expertly Curated Program",
-    description: "Our 12+ years of experience in designing and delivering this program has earned consistent praise from parents for its thoughtful execution and results."
+    description: "Our 13+ years of experience in designing and delivering this program has earned consistent praise from parents for its thoughtful execution and results."
   }
 ];
 
@@ -79,7 +79,7 @@ const faqs = [
   },
   {
     question: "Can the Bridge Program help save an academic year?",
-    answer: "Yes! It allows students to join Primary 2 in April, skipping a full year of Primary 1.",
+    answer: "Yes! They save almost one academic year, complete Primary 1 in just 3 months under expert guidance, and join Primary 2 from April.",
   },
 ];
 
@@ -100,37 +100,37 @@ const testimonials = [
 
 export default function HomePage() {
   const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
-  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true }));
+
 
   return (
     <>
       {/* Hero Section with Contact Form */}
-      <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1750940236/WhatsApp_Image_2025-06-26_at_3.21.32_PM_vrzwky.jpg"
-            alt="A vibrant classroom with children learning"
-            fill
-            priority
-            className="h-full w-full object-cover"
-            data-ai-hint="classroom children"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/70" />
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-6 text-center md:text-left">
-              <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-5xl font-headline font-bold text-white tracking-tight [text-shadow:2px_2px_8px_rgba(0,0,0,0.8)]">
-                <span className="text-primary text-6xl">BRIDGE PROGRAM 2027</span>
+      <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden bg-secondary/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-14 items-center">
+            <div className="space-y-6 min-w-0">
+              <h1 id="hero-heading" className="font-headline font-semibold text-accent text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight">
+                BRIDGE PROGRAM <span className="text-primary">2027</span>
               </h1>
-              <p className="text-2xl sm:text-3xl font-headline text-white/90 [text-shadow:1px_1px_6px_rgba(0,0,0,0.8)]">
+              <p className="text-2xl sm:text-3xl font-headline text-accent leading-tight">
                 Start in January. Progress to Grade 2 in April.
               </p>
-              <p className="text-lg text-white/90 leading-relaxed max-w-xl [text-shadow:1px_1px_4px_rgba(0,0,0,0.8)]">
+              <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
                 A Smarter Start for Your Child's Primary School Journey
-                  </p>
+              </p>
+              <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] shadow-sm border border-accent/10">
+                <Image
+                  src="https://res.cloudinary.com/ddqqlfsjp/image/upload/v1750940236/WhatsApp_Image_2025-06-26_at_3.21.32_PM_vrzwky.jpg"
+                  alt="A vibrant classroom with children learning"
+                  fill
+                  priority
+                  sizes="(max-width: 1023px) 100vw, 55vw"
+                  className="object-cover"
+                  data-ai-hint="classroom children"
+                />
+              </div>
             </div>
-            <div className="w-full md:max-w-lg md:mx-auto">
+            <div className="w-full min-w-0" id="enquiry">
               <ContactForm />
             </div>
           </div>
@@ -138,14 +138,14 @@ export default function HomePage() {
       </section>
 
       {/* Mobile Floating CTA */}
-      <div className="md:hidden fixed bottom-6 right-6 z-50">
+      <div className="md:hidden fixed bottom-4 right-4 z-50">
         <Dialog open={isMobileFormOpen} onOpenChange={setIsMobileFormOpen}>
           <DialogTrigger asChild>
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg rounded-full p-4 h-auto">
               <Send className="h-5 w-5 mr-2" /> Enquire Now
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[90vw] w-[90vw] rounded-lg">
+          <DialogContent className="sm:max-w-lg w-[calc(100%-2rem)] max-h-[90dvh] overflow-y-auto rounded-2xl" aria-describedby={undefined}>
             <DialogHeader className="mb-4">
               <DialogTitle className="text-primary text-2xl font-headline text-center">Enquire About Bridge Program</DialogTitle>
             </DialogHeader>
@@ -296,7 +296,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 id="why-choose-us-heading" className="text-3xl md:text-4xl font-headline font-semibold"><span className="text-primary">Why Parents Choose the</span> <span className="text-accent">DPSIS Bridge Program</span></h2>
             <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-              A seamless transition from K2 to Primary 2, built on over 12 years of trust, care, and proven results.
+              A seamless transition from K2 to Primary 2, built on over 13 years of trust, care, and proven results.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -314,7 +314,7 @@ export default function HomePage() {
 
       {/* About the Bridge Program Section */}
       <SectionWrapper id="about" ariaLabelledBy="about-program-heading">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
            <div className="space-y-4">
             <h2 id="about-program-heading" className="text-3xl md:text-4xl font-headline font-semibold text-primary">What Your Child<span className="text-accent"> Will Learn </span></h2>
             <p className="text-foreground/80 leading-relaxed">
@@ -635,11 +635,10 @@ export default function HomePage() {
           <p className="mt-4 text-lg text-foreground/80 max-w-3xl mx-auto">Parents share their heartfelt experiences with the DPSIS Bridge Program.</p>
         </div>
         <Carousel
-          plugins={[autoplayPlugin.current]}
           opts={{
             align: "start",
           }}
-          className="w-full max-w-6xl mx-auto"
+          className="w-full max-w-6xl mx-auto pb-14"
         >
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
@@ -656,8 +655,8 @@ export default function HomePage() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
+          <CarouselPrevious className="left-auto right-14 top-auto bottom-0 translate-y-0" />
+          <CarouselNext className="right-2 top-auto bottom-0 translate-y-0" />
         </Carousel>
       </SectionWrapper>
       
@@ -698,7 +697,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8">
             <Button asChild size="lg">
-              <Link href="#home">Enquire Now</Link>
+              <Link href="#enquiry">Enquire Now</Link>
             </Button>
           </div>
         </div>
@@ -737,7 +736,7 @@ export default function HomePage() {
         </div>
         <div className="text-center mt-12">
           <Button asChild size="lg">
-            <Link href="#home">Enquire Now</Link>
+            <Link href="#enquiry">Enquire Now</Link>
           </Button>
         </div>
       </SectionWrapper>
@@ -750,7 +749,7 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-7 gap-4 md:gap-6">
           {quickLinks.map((link) => (
-            <Button key={link.label} asChild variant="outline" className="flex flex-col items-center justify-center h-32 p-4 text-center bg-card border shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out group hover:bg-accent hover:text-accent-foreground">
+            <Button key={link.label} asChild variant="outline" className="relative flex flex-col items-center justify-center h-32 p-4 whitespace-normal text-center bg-card border shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out group hover:bg-accent hover:text-accent-foreground">
               <a href={link.href} target="_blank" rel="noopener noreferrer">
                 <link.icon className="h-8 w-8 mb-2 text-primary transition-colors group-hover:text-accent-foreground" />
                 <span className="text-sm font-medium transition-colors">{link.label}</span>
@@ -763,7 +762,7 @@ export default function HomePage() {
   <Button
     asChild
     size="lg"
-    className="rounded-full px-8 py-6 text-base shadow-lg hover:scale-105 transition-transform"
+    className="rounded-full px-5 py-4 h-auto whitespace-normal text-center text-sm sm:text-base shadow-sm"
   >
     <a
       href="/assets/img/downloads/bridge-programme-newsletter.pdf"
